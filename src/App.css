@@ -1,0 +1,31 @@
+.bubble-wrap {
+  display: grid;
+  background-color: #f7b4a0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bubble {
+  width: 60px;
+  height: 60px;
+}
+
+.unpopped-svg,
+.popped-svg {
+  position: relative;
+  top: 10px;
+  left: -10px;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.unpopped-svg {
+  position: relative;
+  top: -68px;
+}
+
+.show-popped .popped-svg,
+.show-unpopped .unpopped-svg {
+  opacity: 1;
+}
