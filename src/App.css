@@ -16,14 +16,73 @@ html {
   padding: 0;
 }
 
-h1 {
+.title-overlay {
+  font-family: "Rammetto One", sans-serif;
   position: absolute;
   z-index: 6;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 8rem;
-  font-family: "Rammetto One", sans-serif;
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title-overlay button {
+  width: 100px;
+  height: 60px;
+  all: unset;
+  background-color: antiquewhite;
+  border: 5px solid #212121;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease-in-out;
+  color: #212121;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-tap-highlight-color: transparent;
+  padding: 20px 28px;
+}
+
+.title-overlay button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  background-color: rgb(238, 224, 206);
+  transform: scale(0.98);
+}
+
+.title-overlay button:focus {
+  background-color: #f7b4a0;
+}
+
+.footer {
+  position: absolute;
+  font-size: 14px;
+  color: #212121;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  background-color: #f7e0d90e;
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  margin-left: 4px;
+}
+
+.footer a:visited {
+  color: #212121;
+}
+
+h1 {
+  font-size: 8rem;
   text-align: center;
   color: #f290b3;
   letter-spacing: 0.2rem;
@@ -31,12 +90,14 @@ h1 {
   -webkit-text-stroke-color: #212121;
   -webkit-text-stroke-width: 3px;
   text-shadow: 0 0 0.5rem rgba(211, 9, 70, 0.25);
-  opacity: 1;
-  transition: opacity 150ms ease-in-out;
 }
 
 h1.hidden {
   opacity: 0;
+}
+
+.title-absent {
+  display: none;
 }
 
 .bubble-wrap {
@@ -82,6 +143,10 @@ h1.hidden {
 @media screen and (max-width: 720px) {
   html {
     font-size: 10px;
+  }
+
+  .footer {
+    font-size: 12px;
   }
 }
 

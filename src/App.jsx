@@ -24,6 +24,8 @@ export default App;
 const BubbleWrap = () => {
   const [bubbleCount, setBubbleCount] = useState(calculateCount());
   const [isTitleVisible, setIsTitleVisible] = useState(true);
+  const [isTitlePresent, setIsTitlePresent] = useState(true);
+
   const { numCols, numRows } = bubbleCount;
 
   useEffect(() => {
@@ -35,23 +37,36 @@ const BubbleWrap = () => {
   }, []);
 
   const bubbles = Array.from({ length: numCols * numRows }, (_, i) => (
-    <Bubble key={i} isEvenRow={i % (numCols * 2) > numCols - 1} />
+    <Bubble
+      key={i}
+      isEvenRow={i % (numCols * 2) > numCols - 1}
+      isTitlePresent={isTitlePresent}
+    />
   ));
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIsTitleVisible(false);
-    }, 1200);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <>
-      <h1 className={`${isTitleVisible ? "visible" : "hidden"}`}>
-        Bubble
-        <br />
-        Wrap
-      </h1>
+      <div
+        className={`title-overlay ${isTitleVisible ? "visible" : "hidden"} ${
+          isTitlePresent ? "title-present" : "title-absent"
+        }`}
+      >
+        <h1>
+          Bubble
+          <br />
+          Wrap
+        </h1>
+        <button
+          onClick={() => {
+            setIsTitleVisible(false);
+            setTimeout(() => {
+              setIsTitlePresent(false);
+            }, 200);
+          }}
+        >
+          START
+        </button>
+      </div>
       <div
         className="bubble-wrap"
         style={{
@@ -61,24 +76,33 @@ const BubbleWrap = () => {
       >
         {bubbles}
       </div>
+      <div className="footer">
+        Made with ❤️ by <a href="https://www.linkedin.com/in/nivemathan/">NK</a>
+      </div>
     </>
   );
 };
 
-const Bubble = ({ isEvenRow }) => {
+const Bubble = ({ isEvenRow, isTitlePresent }) => {
   const [isPopped, setIsPopped] = useState(false);
   const [playPopSound] = useSound(popSound, { volume: 0.2, playbackRate: 1.5 });
+
+  const handlePop = () => {
+    if (!isTitlePresent) playPopSound();
+    setIsPopped(true);
+  };
+
+  const handlePopReset = () => {
+    setTimeout(() => setIsPopped(false), 1500);
+  };
 
   return (
     <div
       className={`bubble ${isPopped ? "show-popped" : "show-unpopped"}`}
-      onMouseEnter={() => {
-        playPopSound();
-        setIsPopped(true);
-      }}
-      onMouseLeave={() => {
-        setTimeout(() => setIsPopped(false), 1500);
-      }}
+      onMouseEnter={handlePop}
+      onMouseLeave={handlePopReset}
+      onTouchStart={handlePop}
+      onTouchEnd={handlePopReset}
       style={
         isEvenRow
           ? {
@@ -96,4 +120,5 @@ const Bubble = ({ isEvenRow }) => {
 
 Bubble.propTypes = {
   isEvenRow: PropTypes.bool.isRequired,
+  isTitlePresent: PropTypes.bool.isRequired,
 };
