@@ -1,8 +1,7 @@
-# React + Vite
+# Bubble Wrap Project 🫧
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun and interactive bubble wrap simulation! Hover over the bubbles to "pop" them, complete with animations and sound effects.
 
-Currently, two official plugins are available:
+## Enjoy popping! 🎉
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Play with Bubble Wrap here!](https://bubble-wrap-xi.vercel.app/)

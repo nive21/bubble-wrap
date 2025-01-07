@@ -1,9 +1,52 @@
-.bubble-wrap {
-  display: grid;
-  background-color: #f7b4a0;
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rammetto+One&display=swap");
+
+#root {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+}
+
+html {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8rem;
+  font-family: "Rammetto One", sans-serif;
+  width: 100vw;
+  text-align: center;
+  color: #f290b3;
+  letter-spacing: 0.2rem;
+  line-height: 8.4rem;
+  -webkit-text-stroke-color: #212121;
+  -webkit-text-stroke-width: 3px;
+  text-shadow: 0 0 0.5rem rgba(211, 9, 70, 0.25);
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}
+
+h1.hidden {
+  opacity: 0;
+}
+
+.bubble-wrap {
+  display: grid;
+  position: relative;
+  left: -26px;
+  top: -45px;
+  background-color: #f7b4a0;
+  width: calc(100vw + 30px);
+  height: calc(100vh + 45px);
 }
 
 .bubble {
@@ -28,4 +71,22 @@
 .show-popped .popped-svg,
 .show-unpopped .unpopped-svg {
   opacity: 1;
+}
+
+@media screen and (max-width: 1080px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 2100px) {
+  html {
+    font-size: 16px;
+  }
 }
